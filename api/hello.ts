@@ -1,10 +1,7 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { send } from 'micro';
-import cors from 'micro-cors';
+import type { VercelRequest, VercelResponse } from '@vercel/node'
 
-// Your existing restaurant data
-
-const zerocuisineapi = {
+export default function handler(req: VercelRequest, res: VercelResponse) {
+  const zerocuisineapi = {
   restaurant: {
     name: "Zero Cuisine",
     openTime: {
@@ -510,20 +507,7 @@ const zerocuisineapi = {
     ],
   },
 };
-
-
-// Define your serverless function
-const handler = cors()((req: VercelRequest, res: VercelResponse) => {
-  // Set CORS headers
-
-  // Check if the requested path is "/zerocuisineapi"
-  if (req.url === '/zerocuisineapi') {
-    // Return the zerocuisineapi data
-    return send(res, 200, zerocuisineapi);
-  }
-
-  // If the requested path is not found, return a 404 response
-  return send(res, 404, { error: 'Not found' });
-});
-
-export default handler;
+  return res.json({
+    zerocuisineapi
+  })
+}
