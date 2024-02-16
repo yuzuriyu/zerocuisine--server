@@ -1,4 +1,10 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node'
+import Cors from 'micro-cors';
+
+const cors = Cors({
+  allowedMethods: ['GET', 'POST', 'OPTIONS'], // Add the HTTP methods you want to allow
+  origin: '*', // Change this to your actual origin or an array of allowed origins
+});
 
 export default function handler(req: VercelRequest, res: VercelResponse) {
   const zerocuisineapi = {
