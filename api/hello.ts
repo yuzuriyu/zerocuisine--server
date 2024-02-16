@@ -517,3 +517,5 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
     zerocuisineapi
   })
 }
+
+export default cors(handler);
